@@ -105,14 +105,28 @@ public class BrainM {
 
     }
 
-    public static void test2() throws NoSuchAlgorithmException {
+    public static void test2() throws Exception {
+
+
+        BufferedWriter out = new BufferedWriter(new FileWriter("/down/brainm_data/result.txt"));
+        LineNumberReader in = new LineNumberReader(new FileReader("/down/brainm_data/addr_list.txt"));
+
+        Set addrSet = new HashSet();
+
+        String s = "";
+        while((s = in.readLine()) != null) {
+            addrSet.add(s.trim());
+        }
+
+        System.out.println("addrSet = " + addrSet);
 
         md = MessageDigest.getInstance("SHA-256");
 
-        BigInteger bi = new BigInteger("19012221580289683623909923137735195896757850210465903656839796037017902859946");
+        BigInteger bi = new BigInteger("0");
         BigInteger bi2 = new BigInteger("1");
 
         long i = 0;
+        long match_cnt = 0;
 
         while(true) {
 
@@ -127,6 +141,14 @@ public class BrainM {
                 System.out.println("i = " + i);
                 System.out.println("bi = " + bi);
                 System.out.println("addr = " + addr);
+                System.out.println("match_cnt = " + match_cnt);
+            }
+
+            if(addrSet.contains(addr)) {
+                match_cnt++;
+                out.write("bi = " + bi + "\n");
+                out.write("addr = " + addr + "\n");
+                out.flush();
             }
 
       /*
