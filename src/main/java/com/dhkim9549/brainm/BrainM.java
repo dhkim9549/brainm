@@ -137,7 +137,7 @@ public class BrainM {
 
             String addr = eckey.toAddress(NetworkParameters.prodNet()).toString();;
 
-            if(i % 1000 == 0) {
+            if(i % 5000 == 0) {
                 System.out.println("i = " + i);
                 System.out.println("bi = " + bi);
                 System.out.println("addr = " + addr);
